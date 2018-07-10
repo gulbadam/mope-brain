@@ -13,9 +13,7 @@ const image = require('./controllers/image');
 
 
 //const PORT = process.env.PORT || 3001 ;
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-}
+
 
 
 const db = knex({
@@ -35,6 +33,9 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+}
 
 //app.get('/', (req, res) => res.send(database.users));
 app.get('/', (req, res) => res.send("working"));
