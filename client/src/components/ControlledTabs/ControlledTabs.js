@@ -14,7 +14,7 @@ const initialState = {
         culture: [],
         message: '',
         general: [],
- }
+};
 class ControlledTabs extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -38,11 +38,7 @@ class ControlledTabs extends React.Component {
 }
     handleColors = (colors) => {
         this.setState({colors: colors});
-        console.log("--------")
-        console.log(colors);
-        console.log(typeof(colors))
-        
-}
+};
 handleResultsMulticultural =(data) => {
     return data.outputs[0].data.regions[0].data.face.multicultural_appearance.concepts.map(culture => {
         const id = culture.id;
@@ -54,13 +50,10 @@ handleResultsMulticultural =(data) => {
             value: value
         };
     })
-}
+};
 handleCulture=(culture)=>{
     this.setState({culture: culture});
-    console.log ("~~~~~~~~~~");
-    console.log(culture);
-    
-}
+    }
 handleResultGender =(data)=>{
     return data.outputs[0].data.regions[0].data.face.gender_appearance.concepts.map(gender =>{
         const id = gender.id;
@@ -70,15 +63,12 @@ handleResultGender =(data)=>{
             id : id,
             name: name,
             value: value
-            
-        };
+            };
     })
 }
 handleGender = (gender) =>{
     this.setState({gender: gender});
-    console.log("GENDER");
-    console.log(gender);
-}
+};
 handeleResultsAge=(data)=>{
     return data.outputs[0].data.regions[0].data.face.age_appearance.concepts.map(age => {
         const id = age.id;
@@ -93,8 +83,6 @@ handeleResultsAge=(data)=>{
 }
 handleAge =(age)=>{
     this.setState({age: age});
-    console.log("age");
-    console.log(age);
 }
 handleResultsGeneral=(data)=>{
 return data.outputs[0].data.concepts.map(general => {
@@ -110,24 +98,19 @@ return {
 }
 handleGeneral=(general)=>{
     this.setState({general: general});
-    console.log("GENERAL");
-    console.log(general)
 }
 componentDidMount() {
-         this.handleSelect(this.state.key)
+        this.handleSelect(this.state.key)
         }
-  componentDidUpdate(prevProps, prevState) {
+componentDidUpdate(prevProps, prevState) {
 if (this.props.input !== prevProps.input) {
     this.handleSelect(this.state.key);
 }
-  }
+}
         handleSelect(key) {
         this.setState({key});
         switch (key) {
         case 1:
-            console.log(`GENERAL ${key}`);
-    
-            //fetch('https://alluring-redwood-89517.herokuapp.com/general', {
             fetch('/general', {
                     method: 'POST',
                     headers: {
@@ -140,15 +123,11 @@ if (this.props.input !== prevProps.input) {
                 .then(response => response.json())
                 .then(response => {
                 this.handleGeneral(this.handleResultsGeneral(response))
-                    console.log(response)
                 })
                 .catch(err => console.log(err));
         
         break;
         case 2:
-    
-    console.log(`COLOR ${key}`);
-    //fetch('https://alluring-redwood-89517.herokuapp.com/colors', {
     fetch('/colors', {
             method: 'POST',
             headers: {
@@ -161,14 +140,10 @@ if (this.props.input !== prevProps.input) {
         .then(response => response.json())
         .then(response => {
             this.handleColors(this.handleResultsColors(response))
-            console.log("arrrCOLORS");
-            console.log(response)
         })
         .catch(err => console.log(err));
         break;
             case 3:
-    console.log(`DEMOGRAFICS ${key}`);
-    //fetch('https://alluring-redwood-89517.herokuapp.com/demographics', {
     fetch('/demographics', {
             method: 'POST',
             headers: {
@@ -180,24 +155,19 @@ if (this.props.input !== prevProps.input) {
         })
         .then(response => response.json())
         .then(response => {
-            console.log(response)
             if (response.outputs[0].data.regions) {
             this.handleCulture(this.handleResultsMulticultural(response));
             this.handleGender(this.handleResultGender(response));
             this.handleAge(this.handeleResultsAge(response));
-            console.log(response.outputs[0].data.regions[0].data.face.multicultural_appearance.concepts);
             } else  {
                 const msg = "No faces detected";
-                console.log(msg);
+              
                 this.setState({message: msg});
             }
         })
         .catch(err => console.log(err));
             break;
             default:
-            console.log(`GENERAL ${key}`);
-
-            //fetch('https://alluring-redwood-89517.herokuapp.com/general', {
             fetch('/general', {
                     method: 'POST',
                     headers: {
@@ -210,7 +180,6 @@ if (this.props.input !== prevProps.input) {
                 .then(response => response.json())
                 .then(response => {
                     this.handleGeneral(this.handleResultsGeneral(response))
-                    console.log(response)
                 })
                 .catch(err => console.log(err));
             break;
@@ -218,19 +187,11 @@ if (this.props.input !== prevProps.input) {
     }
 
 render() {
-    console.log(this.props)
-    console.log("--------")
-    console.log(this.state.colors[0])
-    console.log(typeof(this.state.colors))
-    console.log("........")
-    console. log(this.state.key)
-    console.log(".........")
-    const {colors, general, gender, age, culture} = this.state;
+    const {colors, general, gender,  culture} = this.state;
     return (
         <div className="center ma mt3">
             <Tabs
-           defaultActiveKey = {1}
-                //activeKey={this.state.key}
+        defaultActiveKey = {1}
                 onSelect={this.handleSelect}
                 colors={colors}
                 general={general}
@@ -242,26 +203,22 @@ render() {
                         {(general.length >1 ?
                         <General general ={general}/>:
                     <div></div>)}
-                        
-
                     </div >
                 </Tab>
                 <Tab eventKey={2} title="Colors">
-                   {(colors.length > 1) ?
+                {(colors.length > 1) ?
                     <Colors colors = {colors}/> :
                     <div> </div>
                 }
                 </Tab>
-               
-                <Tab eventKey={3} culture={culture}  gender={gender} title="Demographics">
+            <Tab eventKey={3} culture={culture}  gender={gender} title="Demographics">
                     {(culture.length>1)?
                     <Demographics culture={culture}  gender={gender}/>:
                     <div wait={1000}><h5>No faces detected</h5> </div>
                 }
                 </Tab>
             </Tabs>
-
-        </div>
+    </div>
     );
 }
 }

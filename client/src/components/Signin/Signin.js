@@ -22,8 +22,6 @@ class Signin extends React.Component {
      window.sessionStorage.setItem('token', token);
      }
     onSubmitSignIn = () => {
-        //console.log(this.state);
-        //fetch('https://alluring-redwood-89517.herokuapp.com/signin', {
         fetch('/signin', {
             method: 'post',
             headers: {'Content-Type': 'application/json',
@@ -41,13 +39,6 @@ class Signin extends React.Component {
                     this.props.loadUser(user);
                     
                     this.props.onRouteChange('home');
-                // .then(data =>{
-                
-                //     console.log("data", data);
-                // if (data && data.success === "true") {
-                //     this.saveAuthTokenInSessions(data.token)
-                //     this.props.loadUser(data.user)
-                //     this.props.onRouteChange('home');
                 } else {
                     this.setState({msg: "email or password is invalid"})
                 } })
@@ -56,7 +47,7 @@ class Signin extends React.Component {
             }
         
     render(){
-        const {onRouteChange, msg} =this.props;
+        const {onRouteChange} =this.props;
 return(
         <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
         <main className="pa4 black-80">
@@ -73,14 +64,12 @@ return(
                             <label className="db fw6 lh-copy f5" htmlFor="password">Password</label>
                             <input   onChange={this.onPasswordChange} className="b pa2 input-reset ba bg-transparent hover-bg-blue hover-white w-100" type="password" name="password" id="password" required="required"/>
       </div>
-                            {/* <label className="pa0 ma0 lh-copy f6 pointer"><input type="checkbox"/> Remember me</label> */}
     </fieldset>
                             <div className="">
                                 <input onClick={this.onSubmitSignIn} className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib" type="submit" value="Sign in"/>
     </div>
                                 <div className="lh-copy mt3">
                                     <p onClick={()=>onRouteChange('register')} className="f5 link dim black db pointer">Register</p>
-                                    {/* <a href="#0" className="f6 link dim black db">Forgot your password?</a> */}
                                 </div>
   </div>
 </main>

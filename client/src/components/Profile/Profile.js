@@ -10,9 +10,7 @@ class Profile extends Component {
       pet: this.props.user.pet
     }
   }
-
-  onProfileUpdate = (data) => {
-    //fetch(`https://alluring-redwood-89517.herokuapp.com/profile/${this.props.user.id}`, {
+onProfileUpdate = (data) => {
     fetch(`http://localhost:3001/profile/${this.props.user.id}`, {
       method: 'post',
       headers: {

@@ -19,8 +19,6 @@ class Register extends React.Component {
         this.setState({password: event.target.value})
     }
     onSubmitSignIn = () => {
-        //console.log(this.state);
-        //fetch('https://alluring-redwood-89517.herokuapp.com/register', {
         fetch('/register', {
             method: 'post',
             headers: {
@@ -87,10 +85,7 @@ class Register extends React.Component {
                                 id="password"
                                 required="required"/>
                         </div>
-                        {/*  <label className="pa0 ma0 lh-copy f6 pointer"><input type="checkbox"/> Remem
- * ber me</label> 
- */
-                        }
+}
                     </fieldset>
                     <div className="">
                         <input
@@ -99,14 +94,9 @@ class Register extends React.Component {
                             type="submit"
                             value="Register"/>
                     </div>
-                    {/* <div className="lh-copy mt3">
-                        <a href="#0" className="f6 link dim black db">Sign In</a>
-                        {/* <a href="#0" className="f6 link dim black db">Forgot your password?</a> */
-                    } {/* </div> */
-                    }
                     </div>
             </main>
         </article>)
                 }
-                    }
+                }
 export default Register;

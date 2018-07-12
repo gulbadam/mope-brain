@@ -46,8 +46,6 @@ const initialState = {
       pet: ""
     }
   }
-
-
 class App extends Component {
   constructor() {
       super();
@@ -56,7 +54,6 @@ class App extends Component {
   componentDidMount() {
     const token = window.sessionStorage.getItem('token');
     if(token) {
-      //fetch('https://alluring-redwood-89517.herokuapp.com/signin',{
       fetch('/signin', {
           method: 'POST',
           headers: {
@@ -66,7 +63,6 @@ class App extends Component {
         .then(response => response.json())
         .then(data => {
           if (data && data.id) {
-            ///fetch(`https://alluring-redwood-89517.herokuapp.com/profile/${data.id}`, {
             fetch(`/profile/${data.id}`, {
                 method: 'GET',
                 headers: {
@@ -85,12 +81,8 @@ class App extends Component {
         })
         .catch(err => console.log(err))
       }
-      
-  }
-    
-
- 
-  loadUser = (data) => {
+    }
+    loadUser = (data) => {
     this.setState({user: {
       id: data.id,
         name: data.name,
@@ -103,11 +95,9 @@ class App extends Component {
   calculateFaceLocation = (data) => {
     const image = document.getElementById('inputimage');
     const width = Number(image.width);
-    console.log(width)
     const height = Number(image.height);
     this.setState({heigh: height})
-    console.log(height)
-    return  data.outputs[0].data.regions.map(face => {
+ return  data.outputs[0].data.regions.map(face => {
       const clarifaiFace = face.region_info.bounding_box;
       return {
         leftCol: clarifaiFace.left_col * width,
@@ -119,16 +109,13 @@ class App extends Component {
   }
   displayFaceBox = (boxes) => {
     this.setState({boxes: boxes});
-    console.log(boxes);
   }
   onInputChange =(event)=>{
    this.setState({input: event.target.value}, () => {
-      console.log(this.state.input)
-    });
-    console.log(event.target.value);
+});
+
   }
- 
-inputValidation =() =>{
+ inputValidation =() =>{
  this.setState({
    inputIsvalid: (this.state.input.match(/\.(jpeg|jpg|gif|png)$/) != null)
  })
@@ -136,12 +123,10 @@ inputValidation =() =>{
 onButtonSubmit = (event) => {
     event.preventDefault();
     this.setState({imageUrl: this.state.input}, () => {
-      console.log(this.state.imageUrl)
       this.setState({key: 1})
       this.setState({boxes: []})
       
     });
-    //fetch('https://alluring-redwood-89517.herokuapp.com/imageurl', {
     fetch('/imageurl', {
       method: 'post',
       headers: {
@@ -152,9 +137,7 @@ onButtonSubmit = (event) => {
     })
     .then(res => res.json())
           .then(response => {
-            console.log("res", response)
            if (response) {
-              //fetch('https://alluring-redwood-89517.herokuapp.com/image', {
               fetch('/image', {
                   method: 'put',
                   headers: {

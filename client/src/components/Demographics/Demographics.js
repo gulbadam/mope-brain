@@ -7,10 +7,8 @@ import {
     Panel
 } from 'react-bootstrap';
 const Demographics =({culture, gender})=>{
- 
-    
 
-return(
+    return(
       <div style = {{width: '500px'}}>
       <h4>Gender</h4>
       {gender.map(p=> <Panel key={p.id}>
@@ -36,9 +34,7 @@ return(
             </Panel.Body>
         </Panel>)
         }
-
-
-          </div>
+</div>
 )
 }
 export default Demographics 

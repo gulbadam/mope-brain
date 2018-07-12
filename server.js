@@ -37,13 +37,11 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-//app.get('/', (req, res) => res.send(database.users));
 app.get('/', (req, res) => res.send("working"));
 
 app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)})
-//app.post('/signin', (req, res) => {signin.handleSignin(db, bcrypt)})
 
-app.put('/image', (req, res) => {console.log("body" + req.body); image.handleImage(req, res, db)})
+app.put('/image', (req, res) => {image.handleImage(req, res, db)})
 
 app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)})
 app.post('/colors',  (req, res) => {image.handleApiColors(req, res)})
@@ -51,10 +49,7 @@ app.post('/demographics',  (req, res) => {image.handleApiDemographics(req, res)}
 app.post('/general',  (req, res) => {image.handleApiGeneral(req, res)})
 app.post('/register', (req, res) => {register.handleRegister(req, res, db, bcrypt)})
 app.get('/profile/:id',  (req, res) => { profile.handleProfileGet(req, res, db)})
-//app.post('/profile/:id',  (req, res) => { profile.handleProfileUpdate(req, res, db)})
-//app.listen(PORT, () => {console.log(`app is running on port ${PORT}`);
 
-//});
 app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });

@@ -2,7 +2,6 @@ import React from 'react';
 import ProfileIcon from '../Profile/ProfileIcon';
 import Tilt from 'react-tilt';
 import brain from './logo-Gulbadam.png';
-import { Nav, NavItem } from 'react-bootstrap'
 const Navigation = ({
     onRouteChange, isSignedIn, toggleModal,}) => {
   
@@ -26,19 +25,15 @@ const Navigation = ({
         /> </div> </Tilt> 
         </div>
         <div style={{display: 'flex', justifyContent: 'flex-end'}} className = "mr5 mt3">
-     
-      <ProfileIcon onRouteChange={onRouteChange} toggleModal={toggleModal} />
-           {/*<p onClick = {() => onRouteChange('signout')}
-          //       className = "f3 i link dim black underline pa3 hover-purple pointer" > Sign Out </p> */}
+     <ProfileIcon onRouteChange={onRouteChange} toggleModal={toggleModal} />
      </div>
-     
-        </div> 
+     </div> 
         
   );
     } else {
       return(
         <div className = "mb5 pb5">
-    <div div onClick = {() => onRouteChange('main')}
+    <div onClick = {() => onRouteChange('main')}
     className = 'ml4 mt0 pointer'>
     <Tilt className = "Tilt br2 shadow-2 fl w-60 pa"
         options = {{max: 65}}
@@ -56,14 +51,10 @@ const Navigation = ({
       className = "mr4 mt3">
   <p onClick={() => onRouteChange ('signin')}
     className = "f3  i link dim black underline pa3 mt4  ml4 hover-purple pointer" > Sign In </p>
-    
-  
-  <p onClick={() => onRouteChange('resister')} className="f3  i link dim black underline pa3 mt4 ml1 hover-purple pointer">Register</p>
+    <p onClick={() => onRouteChange('resister')} className="f3  i link dim black underline pa3 mt4 ml1 hover-purple pointer">Register</p>
   </div>
    </div>
       );
-            
-        
-      }
+    }
       }
 export default Navigation

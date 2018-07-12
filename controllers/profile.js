@@ -1,6 +1,5 @@
 const handleProfileGet = (req, res, db) => {
   const { id } = req.params;
-  console.log (id);
   db.select('*').from('users').where({id})
     .then(user => {
       if (user.length) {
@@ -14,7 +13,6 @@ const handleProfileGet = (req, res, db) => {
 
 const handleProfileUpdate = (req, res, db) => {
   const { id } = req.params
-  console.log(id);
   const { name, old, pet } = req.body.formInput
   db('users')
   .where({ id })

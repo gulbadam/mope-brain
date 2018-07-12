@@ -1,6 +1,5 @@
 import React from 'react';
 import './General.css';
-
 import {
     Grid,
     Row,
@@ -22,6 +21,5 @@ return(
         </Panel>)}
     </div>
 )
-
 }
 export default General;

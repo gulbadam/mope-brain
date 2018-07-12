@@ -1,6 +1,5 @@
 import React from 'react';
 import './ImageLinkForm.css';
-import Dna from '../Dna/Dna'
 
 const ImageLinkForm=({onInputChange, onButtonSubmit})=>{
     return (
@@ -13,7 +12,7 @@ const ImageLinkForm=({onInputChange, onButtonSubmit})=>{
         </div>
 </div>
 </div>
-    )
+)
 }
 
 export default ImageLinkForm;
