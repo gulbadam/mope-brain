@@ -85,7 +85,6 @@ class Register extends React.Component {
                                 id="password"
                                 required="required"/>
                         </div>
-}
                     </fieldset>
                     <div className="">
                         <input
@@ -97,6 +96,5 @@ class Register extends React.Component {
                     </div>
             </main>
         </article>)
-                }
-                }
+                }}
 export default Register;
